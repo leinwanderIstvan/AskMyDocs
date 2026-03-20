@@ -2,4 +2,5 @@
   <Project Path="AskMyDocs.Core/AskMyDocs.Core.csproj" />
   <Project Path="AskMyDocs.Tests/AskMyDocs.Tests.csproj" />
   <Project Path="AskMyDocs/AskMyDocs.csproj" />
+  <Project Path="AskMyDocs.Infrastructure/AskMyDocs.Infrastructure.csproj" />
 </Solution>
