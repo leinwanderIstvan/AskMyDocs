@@ -18,4 +18,35 @@ public class ChunkRecord
 
     [VectorStoreVector(Dimensions: 1536, DistanceFunction = DistanceFunction.CosineSimilarity, IndexKind = IndexKind.Hnsw)]
     public ReadOnlyMemory<float>? Vector { get; set; }
+
+
+    public static ChunkRecord From(EmbeddedChunk embeddedChunk)
+    {
+
+        ArgumentNullException.ThrowIfNull(embeddedChunk);
+
+        ArgumentNullException.ThrowIfNull(embeddedChunk.Vector);
+
+        if (embeddedChunk.Vector.Length == 0)
+        {
+            throw new ArgumentException("Vector cannot be empty.", nameof(embeddedChunk));
+        }
+
+
+        return new ChunkRecord()
+        {
+            ChunkId = Guid.NewGuid(),
+            Index = embeddedChunk.ChunkIndex,
+            SourceFilePath = embeddedChunk.SourceFilePath,
+            Text = embeddedChunk.Text,
+            Vector = embeddedChunk.Vector.AsMemory()
+
+        };
+    }
+
+
+
 }
+
+
+
